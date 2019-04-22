@@ -8,21 +8,16 @@ client.on('ready', () => {
 client.on('message', message => {  
 /**
  * 001 Ping Pong
- */
- 
+ */ 
 	if (message.content === '!ping') {
-	// Send "pong" to the same channel
-	message.channel.send('pong');
-	}
-	
+		message.channel.send('pong');
+	}	
 /**
  * 002 Avatar
  */
- 
-	else if (message.content === '!avatar') {
-    message.reply(message.author.avatarURL);
-	
-	
+	if (message.content === '!avatar') {
+		message.reply(message.author.avatarURL);
+	}	
 /********/	
 });
 client.login(process.env.BOT_TOKEN);
