@@ -19,7 +19,7 @@ client.on('message', message => {
  * 002 Avatar
  */
  
-	if (message.content === '!avatar') {
+	else if (message.content === '!avatar') {
     message.reply(message.author.avatarURL);
 	
 	
