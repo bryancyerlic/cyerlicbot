@@ -15,7 +15,7 @@ client.on('guildMemberAdd', member => {
 	if (!channel) return;
 	// Send the message, mentioning the member
 	channel.send('Welcome to ***Cyerlic***, ${member}');
-}
+});
 
 client.on('message', message => {  
 /**
