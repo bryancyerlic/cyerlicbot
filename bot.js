@@ -1,8 +1,3 @@
-//BOT_TOKEN is the Client Secret
-/**
- * A ping pong bot, whenever you send "ping", it replies "pong".
- */
-
 // Import the discord.js module
 const Discord = require('discord.js');
 
@@ -18,12 +13,16 @@ client.on('ready', () => {
 });
 
 // Create an event listener for messages
-client.on('message', message => {
-  // If the message is "ping"
+client.on('message', message => {  
+  //Start Function
+  
+  //001: Ping Pong
   if (message.content === 'ping') {
     // Send "pong" to the same channel
-    message.channel.send('pongpong');
+    message.channel.send('pong');
   }
+  //Next Function//
+  
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
