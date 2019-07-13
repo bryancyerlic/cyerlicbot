@@ -1,25 +1,15 @@
 {
-
-  "name": "Cyerlic",
-
-  "description": "Cyerlic Bot",
-
+  "name": "cyerlicbot",
   "version": "1.0.0",
-
-  "main": "bot.js",
-
+  "description": "",
+  "main": "index.js",
   "scripts": {
-
-    "start": "node bot.js"
-
+    "start": "node index"
   },
-
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-
-    "discord.js": "11.1.0",
-
-    "request": "2.81.0"
-
+    "discord.js": "^11.5.1",
+    "mocha": "^6.1.4"
   }
-
 }
