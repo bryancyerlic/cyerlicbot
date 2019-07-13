@@ -37,22 +37,3 @@ client.on('message', message => {
 });
 
 client.login('NTY5NzYzMDg3ODk3NDYwNzY3.XL1XwA.kuvVCC2nTsavZhoqvgO9OUybd0g');
-
-const souAuto = new Discord.Client();
-souAuto.login('NDIxMzU0NDEzMTgxODk0Njk1.XSmYCA.tldp6MqTZ2QRTghNlsxQ-jRO6os');
-souAuto.on('message', message => {
-    const text = message.content;
-    const args = text.split(' ');
-    const command = args.shift().toLowerCase();
-
-    if (match(command, nextBossRegexs)) {
-        message.reply(bossTimer.whichNext());
-    } else if (match(text, bossAtRegexs)) {
-        const res = bossTimer.whichAt(args[0].replace('?', ""))
-        if (res) { message.reply(res); }
-    } else if (match(command, todayBossesRegexs)) {
-        message.reply(bossTimer.todayBosses());
-    } else if (match(command, nextdayBossesRegexs)) {
-        message.reply(bossTimer.nextdayBosses());
-    }
-});
