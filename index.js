@@ -13,6 +13,7 @@ const nextBossRegexs = [ /^boss\?$/, /^next\?$/ ];
 const bossAtRegexs = [ /^at .*\?$/ ];
 const todayBossesRegexs = [ /^today\?$/ ];
 const nextdayBossesRegexs = [ /^mai\?$/, /^tomorrow\?$/, /^nextday\?/ ];
+const checkInChancelId = "598426642976604170";
 
 function match(command, regexs) {
     return regexs.find(regex => regex.test(command));
@@ -24,6 +25,14 @@ client.on('message', message => {
     const text = message.content;
     const args = text.split(' ');
     const command = args.shift().toLowerCase();
+
+    if (message.channel.id === checkInChancelId && !message.author.bot) {
+        message.reply("**Tự động xóa sau 5s**\nĐây là chanel dùng để điểm danh, nếu đây không phải tin nhắn điểm danh, hãy xóa tin nhắn đi nhé :D")
+        .then(msg => {
+          msg.delete(5000)
+        })
+        return;
+    }
 
     if (match(command, nextBossRegexs)) {
         message.reply(bossTimer.whichNext());
