@@ -77,21 +77,18 @@ function timeByName(timeName) {
 }
 
 function nextBossesDayTime(now, findingBoss = null) {
-    let { day, timeValue } = nextValidDayTime(now);
+    let { day, timeValue } = now;
     let dayOffset = 0;
-    if (timeValue < now.timeValue) {
-        dayOffset += 1;
-    }
 
     let bosses = bossesAt(day, timeValue);
     while(!bosses || (findingBoss && !bosses.includes(findingBoss)) ) {
-    let nextDayTime = nextValidDayTime({ day, timeValue });
-    if (nextDayTime.day > day) {
-        dayOffset += 1;
-    }
-    day = nextDayTime.day;
-    timeValue = nextDayTime.timeValue;
-    bosses = bossesAt(day, timeValue);
+        let nextDayTime = nextValidDayTime({ day, timeValue });
+        if (nextDayTime.day != day) {
+            dayOffset += 1;
+        }
+        day = nextDayTime.day;
+        timeValue = nextDayTime.timeValue;
+        bosses = bossesAt(day, timeValue);
     }
 
     return {
@@ -187,7 +184,7 @@ function whichNext() {
     let responseText = `Boss tiếp theo là ${bossesString(bosses)} vào lúc **${time.displayText}**`;
     const dayTexts = ["hôm nay", "ngày mai", "ngày kia"];
     if (dayOffset < 3) { responseText += `, **${dayTexts[dayOffset]}**.`; } else {
-    responseText += `, **${bossDays[day].displayText}**.`;
+        responseText += `, **${bossDays[day].displayText}**.`;
     }
     return responseText;
 }
