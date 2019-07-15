@@ -20,30 +20,30 @@ function match(command, regexs) {
 
 const bossTimer = require("./bossTimer");
 
-function tempoTextWithDuration(text, duration) {
-  return text + `\nTin nhắn này sẽ tự động **xóa** sau **${duration}s**`;
-}
-
-function timeoutMessage(msg, text, duration) {
-  setTimeout(() => {
-    if (duration > 5) {
-      duration -= 5;
-      msg.edit(tempoTextWithDuration(text, duration));
+function tempoTextWithDuration(duration) {
+    return `\nTin nhắn này sẽ tự động **xóa** sau **${duration}s**`;
+  }
+  
+  function timeoutMessage(msg, text, duration) {
+    setTimeout(() => {
+      if (duration > 5) {
+        duration -= 5;
+        msg.edit(text + tempoTextWithDuration(duration));
+        timeoutMessage(msg, text, duration);
+      } else {
+        msg.delete();
+      }
+    }, 5000);
+  }
+  
+  function repTempo(message, text, duration) {
+    // const notiText = `\n\`\`\`css
+    // Tự động xóa sau ${duration / 1000}s\`\`\``;
+    message.reply(text + tempoTextWithDuration(duration)).then(msg => {
       timeoutMessage(msg, text, duration);
-    } else {
-      msg.delete();
-    }
-  }, 5000);
-}
-
-function repTempo(message, text, duration) {
-  // const notiText = `\n\`\`\`css
-  // Tự động xóa sau ${duration / 1000}s\`\`\``;
-  message.reply(tempoTextWithDuration(text, duration)).then(msg => {
-    timeoutMessage(msg, text, duration);
-  });
-  return;
-}
+    });
+    return;
+  }
 
 client.on("message", message => {
   const text = message.content.toLowerCase();
