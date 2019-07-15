@@ -12,7 +12,7 @@ kzarka = "Kzarka";
 const bossDays = [
     { name: "Chủ nhật", 	t0h30: [karanda], 	t6: [kutum], 	t10: [kzarka, karanda], t14: [nouver, kutum], 	t15: [vell], 			t19: [karanda], 		t23: [nouver, kutum] },
     { name: "Thứ 2", 		t0h30: [kzarka], 	t6: [garmoth], 							t14: [nouver], 			t15: [karanda],			t19: [kzarka], 			t23: [offin] },
-    { name: "Thứ 3", 		t0h30: [nouver], 	t6: [kutum], 	t10: [kzarka, karanda], t14: [nouver, kutum], 	t15: [nouver],			t19: [muraka, quint], 	t23: [nouver, kutum] },
+    { name: "Thứ 3", 		t0h30: [nouver], 	t6: [kutum], 	t10: [kzarka],          t14: [kutum], 	        t15: [nouver],			t19: [muraka, quint], 	t23: [nouver, kutum] },
     { name: "Thứ 4", 		t0h30: [kzarka], 					t10: [kzarka], 			t14: [karanda], 								t19: [kutum], 			t23: [offin] },
     { name: "Thứ 5", 		t0h30: [kutum], 	t6: [nouver], 	t10: [kzarka], 			t14: [kutum], 			t15: [kzarka, karanda],	t19: [kzarka, karanda], t23: [nouver, kzarka] },
     { name: "Thứ 6", 		t0h30: [kzarka], 	t6: [karanda],	t10: [kutum], 			t14: [kzarka], 									t19: [nouver], 			t23: [offin] },
