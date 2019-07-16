@@ -27,7 +27,7 @@ function getBossTimerSuffix() {
 }
 
 function loop() {
-    bossTimerChanel.setName(`boss-timer: ${getBossTimerSuffix()}`);
+    bossTimerChanel.setName(`${getBossTimerSuffix()}`);
 }
 
 module.exports = function startRunLoop(client) {
