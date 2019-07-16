@@ -10,9 +10,9 @@ function getBossTimerSuffix() {
     let minutes = timeInHours % 1;
     timeInHours = timeInHours - minutes;
     minutes = minutes * 60 - 1;
-    const hourString = timeInHours > 0 ? `**${Math.round(timeInHours)}** giờ` : "";
-    const minString = minutes > 0 ? `**${Math.round(minutes)}** phút` : "";
-    return `${bossesString(bossTime.bosses)} sẽ xuất hiện sau ${(hourString)}${minString}`;
+    const hourString = timeInHours > 0 ? ` **${Math.round(timeInHours)}** giờ` : "";
+    const minString = minutes > 0 ? ` **${Math.round(minutes)}** phút` : "";
+    return `${bossesString(bossTime.bosses)} sẽ xuất hiện sau${(hourString)}${minString}`;
 }
 
 function loop() {
