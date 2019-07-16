@@ -221,6 +221,8 @@ function nextdayBosses() {
 }
 
 module.exports = {
+    now,
+    nextBossesDayTime,
     whichAt,
     whichNext,
     todayBosses,
