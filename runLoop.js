@@ -42,6 +42,12 @@ function sendMessToBossTimerIfNeeded(time, text) {
                 }
                     break;
             }
+    } else {
+        if (mess) {
+            mess.edit(text);
+        } else {
+            sendAndSave(text)
+        }
     }
 }
 
