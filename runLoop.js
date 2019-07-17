@@ -15,10 +15,18 @@ function sendAndSave(text) {
 function sendMessToBossTimerIfNeeded(time, text) {
     const { timeInHours, minutes } = time;
     if (timeInHours === 1) {
-        bossTimerChanel.send(text)
-        .then(msg => {
-            mess = msg;
-        })
+        if (minutes === 0) {
+            bossTimerChanel.send(text)
+            .then(msg => {
+                mess = msg;
+            })
+        } else {
+            if (mess) {
+                mess.edit(text);
+            } else {
+                sendAndSave(text)
+            }
+        }
     } else if (timeInHours === 0) {
             switch (minutes) {
                 case 30:                 
