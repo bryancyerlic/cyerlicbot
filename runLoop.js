@@ -56,7 +56,7 @@ function getBossTimeTopicText() {
     const minString = minutes > 0 ? ` **${Math.round(minutes)}** phút` : "";
 
     const text = `${bossesString(bossTime.bosses)} sẽ xuất hiện sau${(hourString)}${minString}`;
-    sendMessToBossTimerIfNeeded(time, text)
+    sendMessToBossTimerIfNeeded({ timeInHours, minutes }, text);
 
     return text;
 }
