@@ -5,6 +5,24 @@ let lobbyBdoChanel = null
 let bossTimerChanel = null
 let mess = null
 
+function deleteIfExistAndSendNew(text) {
+    if (mess) {
+        mess.delete().then(() => {
+            sendAndSave(text)
+        });
+    } else {
+        sendAndSave(text)
+    }
+}
+
+function editIfExistOrSendNew(text) {
+    if (mess) {
+        mess.edit(text);
+    } else {
+        sendAndSave(text)
+    }
+}
+
 function sendAndSave(text) {
     bossTimerChanel.send(text)
     .then(msg => {
@@ -16,46 +34,24 @@ function sendMessToBossTimerIfNeeded(time, text) {
     const { timeInHours, minutes } = time;
     if (timeInHours === 1) {
         if (minutes === 0) {
-            bossTimerChanel.send(text)
-            .then(msg => {
-                mess = msg;
-            })
+            deleteIfExistAndSendNew(text);
         } else {
-            if (mess) {
-                mess.edit(text);
-            } else {
-                sendAndSave(text)
-            }
+            editIfExistOrSendNew(text);
         }
     } else if (timeInHours === 0) {
-            switch (minutes) {
-                case 30:                 
-                case 15:
-                case 10:
-                case 5:
-                if (mess) {
-                    mess.delete().then(() => {
-                        sendAndSave(text)
-                    });
-                } else {
-                    sendAndSave(text)
-                }
-
-                    break;
-                default:
-                if (mess) {
-                    mess.edit(text);
-                } else {
-                    sendAndSave(text)
-                }
-                    break;
-            }
-    } else {
-        if (mess) {
-            mess.edit(text);
-        } else {
-            sendAndSave(text)
+        switch (minutes) {
+            case 30:                 
+            case 15:
+            case 10:
+            case 5:
+                deleteIfExistAndSendNew(text);
+                break;
+            default:
+                editIfExistOrSendNew(text);
+                break;
         }
+    } else {
+        editIfExistOrSendNew(text);
     }
 }
 
