@@ -2,8 +2,9 @@ const { bossTimerChanelId, lobbyBdoChanelId } = require("./config");
 const { bossesString, now, nextBossesDayTime } = require("./bossTimer");
 
 let lobbyBdoChanel = null
+let bossTimerChanel = null
 
-function getBossTimerSuffix() {
+function getBossTimeTopicText() {
     const nowTime = now();
     const bossTime = nextBossesDayTime(nowTime);
     let timeInHours = bossTime.time.value - nowTime.timeValue + (bossTime.dayOffset > 0 ? 24 : 0);
@@ -16,11 +17,14 @@ function getBossTimerSuffix() {
 }
 
 function loop() {
-    lobbyBdoChanel.setTopic(`${getBossTimerSuffix()}`);
+    const bossTimeTopicText = getBossTimeTopicText();
+    lobbyBdoChanel.setTopic(bossTimeTopicText);
+    bossTimerChanel.setTopic(bossTimeTopicText);
 }
 
 module.exports = function startRunLoop(client) {
     lobbyBdoChanel =  client.channels.get(lobbyBdoChanelId);
+    bossTimerChanel = client.channels.get(bossTimerChanelId);
     loop();
     setInterval(loop, 60000);
 }
