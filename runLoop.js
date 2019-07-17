@@ -5,13 +5,15 @@ let lobbyBdoChanel = null
 let bossTimerChanel = null
 let mess = null
 
+function sendAndSave(text) {
+    bossTimerChanel.send(text)
+    .then(msg => {
+        mess = msg;
+    });
+}
+
 function sendMessToBossTimerIfNeeded(time, text) {
     const { timeInHours, minutes } = time;
-    const c60 = timeInHours === 1 && minutes === 0;
-    const c30 = timeInHours === 0 && minutes === 30;
-    const c15 = timeInHours === 0 && minutes === 15;
-    const c10 = timeInHours === 0 && minutes === 10;
-    const c5 = timeInHours === 0 && minutes === 5;
     if (timeInHours === 1) {
         bossTimerChanel.send(text)
         .then(msg => {
@@ -23,15 +25,21 @@ function sendMessToBossTimerIfNeeded(time, text) {
                 case 15:
                 case 10:
                 case 5:
-                mess.delete().then(() => {
-                    bossTimerChanel.send(text)
-                    .then(msg => {
-                        mess = msg;
+                if (mess) {
+                    mess.delete().then(() => {
+                        sendAndSave(text)
                     });
-                });
+                } else {
+                    sendAndSave(text)
+                }
+
                     break;
                 default:
-                mess.edit(text);
+                if (mess) {
+                    mess.edit(text);
+                } else {
+                    sendAndSave(text)
+                }
                     break;
             }
     }
@@ -46,7 +54,7 @@ function getBossTimeTopicText() {
     minutes = minutes * 60 - 1;
     const hourString = timeInHours > 0 ? ` **${Math.round(timeInHours)}** giờ` : "";
     const minString = minutes > 0 ? ` **${Math.round(minutes)}** phút` : "";
-    
+
     const text = `${bossesString(bossTime.bosses)} sẽ xuất hiện sau${(hourString)}${minString}`;
     sendMessToBossTimerIfNeeded(time, text)
 
