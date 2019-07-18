@@ -86,7 +86,7 @@ client.on("message", message => {
     message.delete(3000);
     bossTimerRep(
       message,
-      bossTimer.bossTimer.whichAt(args[0].replace("?", "")),
+      bossTimer.whichAt(args[0].replace("?", "")),
       15
     );
   } else if (match(command, todayBossesRegexs)) {
