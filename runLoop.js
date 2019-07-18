@@ -60,10 +60,10 @@ function getBossTimeTopicText() {
     const bossTime = nextBossesDayTime(nowTime);
     let timeInHours = bossTime.time.value - nowTime.timeValue + (bossTime.dayOffset > 0 ? 24 : 0);
     let minutes = timeInHours % 1;
-    timeInHours = timeInHours - minutes;
-    minutes = minutes * 60 - 1;
-    const hourString = timeInHours > 0 ? ` **${Math.round(timeInHours)}** giờ` : "";
-    const minString = minutes > 0 ? ` **${Math.round(minutes)}** phút` : "";
+    timeInHours = Math.round(timeInHours - minutes);
+    minutes = Math.round(minutes * 60 - 1);
+    const hourString = timeInHours > 0 ? ` **${timeInHours}** giờ` : "";
+    const minString = minutes > 0 ? ` **${minutes}** phút` : "";
 
     const text = `${bossesString(bossTime.bosses)} sẽ xuất hiện sau${(hourString)}${minString}`;
     sendMessToBossTimerIfNeeded({ timeInHours, minutes }, text);
