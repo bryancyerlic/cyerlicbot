@@ -80,20 +80,20 @@ client.on("message", message => {
   }
 
   if (match(command, nextBossRegexs)) {
-    message.delete();
+    message.delete(3000);
     bossTimerRep(message, bossTimer.whichNext(), 15);
   } else if (match(text, bossAtRegexs)) {
-    message.delete();
+    message.delete(3000);
     bossTimerRep(
       message,
       bossTimer.bossTimer.whichAt(args[0].replace("?", "")),
       15
     );
   } else if (match(command, todayBossesRegexs)) {
-    message.delete();
+    message.delete(3000);
     bossTimerRep(message, bossTimer.todayBosses(), 60);
   } else if (match(command, nextdayBossesRegexs)) {
-    message.delete();
+    message.delete(3000);
     bossTimerRep(message, bossTimer.nextdayBosses(), 60);
   }
 });
