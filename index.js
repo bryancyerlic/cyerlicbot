@@ -11,7 +11,8 @@ const {
   todayBossesRegexs,
   nextdayBossesRegexs,
   checkInChanelId,
-  bossTimerChanelId
+  bossTimerChanelId,
+  botChanelId
 } = require("./config");
 
 // when the client is ready, run this code
@@ -53,7 +54,7 @@ function repTempo(message, text, duration) {
 }
 
 function bossTimerRep(message, text, duration) {
-  if (message.channel.id === bossTimerChanelId) {
+  if (message.channel.id === botChanelId) {
     message.reply(text)
     .then(msg => {
       setTimeout(() => {

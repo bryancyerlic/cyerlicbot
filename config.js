@@ -5,6 +5,7 @@ const todayBossesRegexs = [/^today\?$/, /^nay\?$/];
 const nextdayBossesRegexs = [/^mai\?$/, /^tomorrow\?$/, /^nextday\?/];
 const checkInChanelId = "598426642976604170";
 const lobbyBdoChanelId= "419795241390833665";
+const botChanelId = "570127841874804738"
 
 module.exports = {
     bossTimerChanelId,
@@ -13,5 +14,6 @@ module.exports = {
     todayBossesRegexs,
     nextdayBossesRegexs,
     checkInChanelId,
-    lobbyBdoChanelId
+    lobbyBdoChanelId,
+    botChanelId
 };
