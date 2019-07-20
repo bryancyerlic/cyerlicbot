@@ -27,6 +27,7 @@ function match(command, regexs) {
 }
 
 const bossTimer = require("./bossTimer");
+const getImperialRSString = require("./imperialCal");
 
 function tempoTextWithDuration(duration) {
 	return `\nTin nhắn này sẽ tự động **xóa** sau **${duration}s**`;
@@ -96,6 +97,9 @@ client.on("message", message => {
   } else if (match(command, nextdayBossesRegexs)) {
     message.delete(3000);
     bossTimerRep(message, bossTimer.nextdayBosses(), 60);
+  } else if (command === "soda") {
+    message.delete(3000);
+    repTempo(message, getImperialRSString(), 60);
   }
 });
 
