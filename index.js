@@ -96,7 +96,7 @@ client.on("message", message => {
   } else if (match(command, nextdayBossesRegexs)) {
     message.delete(3000);
     bossTimerRep(message, bossTimer.nextdayBosses(), 60);
-  } else if (message.channel.id === bossTimerChanelId) {
+  } else if (message.channel.id === bossTimerChanelId && !message.author.bot) {
     message.delete(3000);
     repTempo(
       message,
