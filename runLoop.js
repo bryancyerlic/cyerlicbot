@@ -1,5 +1,6 @@
 const { bossTimerChanelId, lobbyBdoChanelId } = require("./config");
 const { bossesString, now, nextBossesDayTime } = require("./bossTimer");
+const getImperialRSString = require("./imperialCal");
 
 let lobbyBdoChanel = null
 let bossTimerChanel = null
@@ -70,7 +71,7 @@ function getBossTimeTopicText() {
     const text = `${bossesString(bossTime.bosses)} sẽ xuất hiện sau${(hourString)}${minString}`;
     sendMessToBossTimerIfNeeded({ timeInHours, minutes }, text);
 
-    return text;
+    return text + `. ${getImperialRSString()}`;
 }
 
 function loop() {

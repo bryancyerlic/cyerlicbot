@@ -27,7 +27,6 @@ function match(command, regexs) {
 }
 
 const bossTimer = require("./bossTimer");
-const getImperialRSString = require("./imperialCal");
 
 function tempoTextWithDuration(duration) {
 	return `\nTin nhắn này sẽ tự động **xóa** sau **${duration}s**`;
@@ -97,9 +96,14 @@ client.on("message", message => {
   } else if (match(command, nextdayBossesRegexs)) {
     message.delete(3000);
     bossTimerRep(message, bossTimer.nextdayBosses(), 60);
-  } else if (command === "soda") {
+  } else if (message.channel.id === bossTimerChanelId) {
     message.delete(3000);
-    repTempo(message, getImperialRSString(), 60);
+    repTempo(
+      message,
+      'Đây là chanel dùng để xem giờ world boss:\n\t\t\t- Chat "boss?" để xem boss nào sẽ xuất hiện vào lần tới\n\t\t\t- Chat "today?" để xem danh sách boss xuất hiện ngày hôm nay\n\t\t\t- Mọi tin nhắn ở chanel này sẽ bị xóa sau **3 giây**',
+      60
+    );
+    return;
   }
 });
 

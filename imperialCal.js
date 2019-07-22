@@ -28,5 +28,5 @@ module.exports = function getImperialRSTimesString() {
     const tilImperialTradRS = remainTime({from: timeValue, marks: imperialTradRSTimes});
     const impRSStr = stringOfRemainTime(tilImperialRS);
     const impTraRSStr = stringOfRemainTime(tilImperialTradRS);
-    return `Imperial Reset sau ${impRSStr}\nImperial **Trade** Reset sau ${impTraRSStr}`;
+    return `**Imperial** sẽ reset sau ${impRSStr}. **Imperial Trade** sẽ reset sau ${impTraRSStr}`;
 };
